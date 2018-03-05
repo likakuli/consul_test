@@ -1,0 +1,16 @@
+{
+  "data_dir": "/consul/data",
+  "watches":[
+    {
+      "type": "services",
+      "handler_type": "http",
+      "http_handler_config": {
+        "path":"https://10.202.41.70:9999/watch",
+        "method": "POST",
+        "header": {"x-foo":["bar", "baz"]},
+        "timeout": "10s",
+        "tls_skip_verify": true
+      }
+    }
+  ]
+}
