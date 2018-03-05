@@ -9,14 +9,21 @@ import (
 
 func main() {
 	http.HandleFunc("/watch", watch)
+	fmt.Println("Start running...")
 	log.Fatal(http.ListenAndServe(":9999", nil))
-	fmt.Println("Running...")
+
+	select {}
 }
 
 func watch(w http.ResponseWriter, r *http.Request) {
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		fmt.Println(err.Error())
+	switch r.Method {
+	case http.MethodPost:
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+		fmt.Println(string(body))
+	default:
+		fmt.Println("not support")
 	}
-	fmt.Println(string(body))
 }
