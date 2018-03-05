@@ -2,9 +2,8 @@ package main
 
 import (
 	"io/ioutil"
+	"log"
 	"net/http"
-
-	"github.com/prometheus/common/log"
 )
 
 func main() {
