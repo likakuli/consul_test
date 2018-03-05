@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -9,12 +10,13 @@ import (
 func main() {
 	http.HandleFunc("/watch", watch)
 	log.Fatal(http.ListenAndServe(":9999", nil))
+	fmt.Println("Running...")
 }
 
 func watch(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		w.Write([]byte(err.Error()))
+		fmt.Println(err.Error())
 	}
-	w.Write(body)
+	fmt.Println(string(body))
 }
